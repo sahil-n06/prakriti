@@ -8,6 +8,7 @@ import rocket from './assets/rocket.svg'
 import userIcon from './assets/user-icon.png'
 import gptImgLogo from './assets/chatgptLogo.svg'
 import Quiz from './components/quiz';
+import { QuizData } from './Data/data';
 
 
 const handlePrakarti = ()=>{
@@ -25,7 +26,7 @@ function App() {
       <div className="sideBar">
         <div className='upperSide'>
           <div className='upperSideTop'><img src={gptLogo} alt='logo' className='logo' /><span className='brand'>PRAKRITI</span></div>
-          <button className='midBtn'><img src={addBtn} alt='' className='addBtn' />New Chat</button>
+          <button className='midBtn' onClick={()=>{window.location.reload()}} ><img src={addBtn} alt='' className='addBtn' />New Chat</button>
           <div className='upperSideBottom'>
             <button className='query' onClick={handlePrakarti} value={'What is PRAKRITI'} ><img src={msgIcon} alt='' />What is PRAKRITI</button>
             <button className='query' onClick={handleQuery} value={'How to use PRAKRITI'} ><img src={msgIcon} alt='' />How to use PRAKRITI</button>

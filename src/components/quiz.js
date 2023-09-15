@@ -35,7 +35,7 @@ function Quiz() {
     if (selectedOption !== null) {
       if (currentQuestion < QuizData.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
-        setSelectedOption(null); // Reset selected option for the next question
+        setSelectedOption(0); // Reset selected option for the next question
       } else {
         setShowResult(true);
       }
