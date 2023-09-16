@@ -26,9 +26,10 @@ function Quiz() {
     setSelectedOption(optionIndex);
   };
 
-  if(vataScore>pittaScore&&vataScore>kaphaScore){
-    console.log(vataScore)
-  }
+  // const Doshas = () => {
+  //   if(vataScore>pittaScore&&vataScore>kaphaScore)
+  //   return (vataScore)
+  // }
 
   const changeQuestion = () => {
     // Check if an option has been selected before proceeding
