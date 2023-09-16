@@ -30,7 +30,19 @@ function Quiz() {
       return "Pitta";
     } else if (kaphaScore > vataScore && kaphaScore > pittaScore) {
       return "Kapha";
-    } else {
+    } else if (kaphaScore === vataScore && kaphaScore > pittaScore) {
+      return "Kapha and vata";
+    } else if (kaphaScore === pittaScore && kaphaScore > pittaScore) {
+      return "Kapha and pitta";
+    }else if (pittaScore === vataScore && pittaScore > kaphaScore) {
+      return "pitta and vata";
+    } else if (kaphaScore === vataScore && kaphaScore < pittaScore) {
+      return "pitta";
+    } else if (kaphaScore === pittaScore && kaphaScore < vataScore) {
+      return "vata";
+    } else if (pittaScore === vataScore && pittaScore < kaphaScore) {
+      return "kapha";
+    }else {
       return "Balanced";
     }
   };
