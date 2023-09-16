@@ -11,6 +11,8 @@ import Quiz from './components/quiz';
 import { QuizData } from './Data/data';
 
 
+
+
 const handlePrakarti = ()=>{
   console.log("checking the what is prakarti")
 }

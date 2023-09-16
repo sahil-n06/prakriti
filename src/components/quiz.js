@@ -1,43 +1,48 @@
 import React, { useState } from "react";
 import { QuizData } from "../Data/data";
 import QuizResult from "./quizresult";
+
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [vataScore, setVataScore] = useState(0);
   const [pittaScore, setPittaScore] = useState(0);
   const [kaphaScore, setKaphaScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [showResult,setShowResult]=useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [doshaResult, setDoshaResult] = useState(null);
 
   const handleOptionClick = (optionIndex) => {
-    // Increment the respective dosha (Vata, Pitta, or Kapha) based on the selected option
     if (optionIndex === 1) {
       setVataScore(vataScore + 1);
-      console.log(optionIndex);
     } else if (optionIndex === 2) {
-      console.log(optionIndex);
       setPittaScore(pittaScore + 1);
     } else if (optionIndex === 3) {
-      console.log(optionIndex);
       setKaphaScore(kaphaScore + 1);
     }
-
 
     setSelectedOption(optionIndex);
   };
 
-  // const Doshas = () => {
-  //   if(vataScore>pittaScore&&vataScore>kaphaScore)
-  //   return (vataScore)
-  // }
+  const getDosha = () => {
+    if (vataScore > pittaScore && vataScore > kaphaScore) {
+      return "Vata";
+    } else if (pittaScore > vataScore && pittaScore > kaphaScore) {
+      return "Pitta";
+    } else if (kaphaScore > vataScore && kaphaScore > pittaScore) {
+      return "Kapha";
+    } else {
+      return "Balanced";
+    }
+  };
 
   const changeQuestion = () => {
-    // Check if an option has been selected before proceeding
     if (selectedOption !== null) {
       if (currentQuestion < QuizData.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
-        setSelectedOption(0); // Reset selected option for the next question
+        setSelectedOption(0);
       } else {
+        const dosha = getDosha();
+        setDoshaResult(dosha);
         setShowResult(true);
       }
     } else {
@@ -45,44 +50,50 @@ function Quiz() {
     }
   };
 
-  const resetAll=()=>{
+  const resetAll = () => {
     setShowResult(false);
     setCurrentQuestion(0);
     handleOptionClick(0);
     setVataScore(0);
     setPittaScore(0);
     setKaphaScore(0);
-}
+    setDoshaResult(null);
+  };
 
   return (
     <div>
       <div className="container">
-      {showResult ? (
-                <QuizResult tryAgain={resetAll}/>
-            ):(
-            <>
-        <div className="question">
-          <span id="question-number">{currentQuestion + 1}.</span>
-          <span id="question-txt">{QuizData[currentQuestion].question}</span>
-        </div>
-        <div className="option-container">
-          {QuizData[currentQuestion].options.map((option, i) => {
-            return (
-              <button
-                className={`option-btn ${
-                  selectedOption === i + 1 ? "checked" : null
-                }`}
-                key={i}
-                onClick={() => handleOptionClick(i + 1)}
-              >
-                {option}
-              </button>
-            );
-          })}
-        </div>
-        <input type="button" value="Submit" id="next-button" onClick={changeQuestion} />
-        </>)}
-
+        {showResult ? (
+          <QuizResult doshaResult={doshaResult} tryAgain={resetAll} />
+        ) : (
+          <>
+            <div className="question">
+              <span id="question-number">{currentQuestion + 1}.</span>
+              <span id="question-txt">{QuizData[currentQuestion].question}</span>
+            </div>
+            <div className="option-container">
+              {QuizData[currentQuestion].options.map((option, i) => {
+                return (
+                  <button
+                    className={`option-btn ${
+                      selectedOption === i + 1 ? "checked" : null
+                    }`}
+                    key={i}
+                    onClick={() => handleOptionClick(i + 1)}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            <input
+              type="button"
+              value="Submit"
+              id="next-button"
+              onClick={changeQuestion}
+            />
+          </>
+        )}
       </div>
     </div>
   );
