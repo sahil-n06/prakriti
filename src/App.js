@@ -1,37 +1,94 @@
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import gptLogo from './assets/chatgpt.svg'
-import addBtn from './assets/add-30.png'
-import msgIcon from './assets/message.svg'
-import home from './assets/home.svg'
-import saved from './assets/bookmark.svg'
-import rocket from './assets/rocket.svg'
-import userIcon from './assets/user-icon.png'
-import gptImgLogo from './assets/chatgptLogo.svg'
+import gptLogo from './assets/chatgpt.svg';
+import addBtn from './assets/add-30.png';
+import msgIcon from './assets/message.svg';
+import home from './assets/home.svg';
+import saved from './assets/bookmark.svg';
+import rocket from './assets/rocket.svg';
+import useric from './assets/user-ic.jpeg';
+import gptImgLogo from './assets/chatgptLogo.svg';
 import Quiz from './components/quiz';
 import { QuizData } from './Data/data';
 
-
-
-
-const handlePrakarti = ()=>{
-  console.log("checking the what is prakarti")
-}
-
-const handleQuery = ()=>{
-  console.log("checking the how to use prakarti")
-}
-
-
 function App() {
+  const [chatMessages, setChatMessages] = useState([
+    {
+      id: 1,
+      type: 'bot',
+      text: "Hi, I'm PRAKRITI. I can help you learn more about your Doshas.",
+    },
+  ]);
+
+  const [showQuiz, setShowQuiz] = useState(false);
+  const chatContainerRef = useRef(null);
+
+  const generateUniqueKey = () => {
+    return Math.random().toString(36).substring(7); // Generate a unique key
+  };
+
+  useEffect(() => {
+    // Scroll to the latest chat message when chatMessages change
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth', // Add smooth scrolling animation
+      });
+    }
+  }, [chatMessages]);
+
+  const handlePrakarti = () => {
+    const userMessage = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'user',
+      text: 'What is PRAKRITI',
+    };
+    setChatMessages(prevMessages => [...prevMessages, userMessage]);
+
+    const botResponse = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'bot',
+      text: 'PRAKRITI is a concept in Ayurveda that defines your unique mind-body constitution. It is influenced by your dominant dosha—Vata, Pitta, or Kapha.',
+    };
+
+    setTimeout(() => {
+      setChatMessages(prevMessages => [...prevMessages, botResponse]);
+    }, 1000);
+  };
+
+  const handleQuery = () => {
+    const userMessage = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'user',
+      text: 'How to use PRAKRITI',
+    };
+    setChatMessages(prevMessages => [...prevMessages, userMessage]);
+
+    const botResponse = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'bot',
+      text: 'You can use PRAKRITI to learn more about your doshas by taking a quiz. Simply click on "New Chat" to start the quiz, and I will guide you through it.',
+    };
+
+    setTimeout(() => {
+      setChatMessages(prevMessages => [...prevMessages, botResponse]);
+    }, 1000);
+  };
+
+  const openQuiz = () => {
+    setShowQuiz(true); // Set the state to true to display the quiz
+  };
+
   return (
     <div className="App">
       <div className="sideBar">
         <div className='upperSide'>
           <div className='upperSideTop'><img src={gptLogo} alt='logo' className='logo' /><span className='brand'>PRAKRITI</span></div>
-          <button className='midBtn' onClick={()=>{window.location.reload()}} ><img src={addBtn} alt='' className='addBtn' />New Chat</button>
+          <button className='midBtn' onClick={() => { window.location.reload() }} ><img src={addBtn} alt='' className='addBtn' />New Chat</button>
           <div className='upperSideBottom'>
             <button className='query' onClick={handlePrakarti} value={'What is PRAKRITI'} ><img src={msgIcon} alt='' />What is PRAKRITI</button>
             <button className='query' onClick={handleQuery} value={'How to use PRAKRITI'} ><img src={msgIcon} alt='' />How to use PRAKRITI</button>
+            <button className='query' onClick={openQuiz}><img src={msgIcon} alt='' />Know your Dosha</button>
           </div>
         </div>
         <div className='lowerSide'>
@@ -41,18 +98,15 @@ function App() {
         </div>
       </div>
       <div className="main">
-       <div className='chats'>
-       <div className='chat bot'>
-          <img className='chatImg' src='' alt=''/><p className='txt'>Hi, I'm PRAKRITI.<br></br>I can help you Learn more about your Doshas</p>
+        <div className='chats' ref={chatContainerRef}>
+          {chatMessages.map((message) => (
+            <div className={`chat ${message.type}`} key={message.id}>
+              <img className='chatImg' src={message.type === 'bot' ? gptImgLogo : useric } alt='' />
+              <p className={`txt ${message.type === 'user' ? 'user-message' : ''}`}>{message.text}</p>
+            </div>
+          ))}{showQuiz && <Quiz />}
         </div>
-        <div className='chat bot'>
-          <img className='chatImg' src='' alt=''/><p className='txt'><Quiz/></p>
-        </div>
-        <div className='chat'>
-          <img className='chatImg' src='' alt='usericon'/><p className='txt'></p>
-        </div>
-       </div>
-    </div>
+      </div>
     </div>
   );
 }
