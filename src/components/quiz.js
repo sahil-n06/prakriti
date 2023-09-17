@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { QuizData } from "../Data/data";
-import QuizResult from "./quizresult";
-
+import gptLogo from '../assets/chatgptLogo.svg';
+import celebration from '../assets/celebration.jpeg'
+import Diet from '../assets/Diet.jpeg'
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [vataScore, setVataScore] = useState(0);
@@ -21,6 +22,21 @@ function Quiz() {
     }
 
     setSelectedOption(optionIndex);
+
+    setTimeout(() => {
+      goToNextQuestion();
+    }, 100); // delay (in milliseconds) apne hisaab se change krr lena
+  };
+
+  const goToNextQuestion = () => {
+    if (currentQuestion < QuizData.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setSelectedOption(null); 
+    } else {
+      const dosha = getDosha();
+      setDoshaResult(dosha);
+      setShowResult(true);
+    }
   };
 
   const getDosha = () => {
@@ -31,41 +47,36 @@ function Quiz() {
     } else if (kaphaScore > vataScore && kaphaScore > pittaScore) {
       return "Kapha";
     } else if (kaphaScore === vataScore && kaphaScore > pittaScore) {
-      return "Kapha and vata";
-    } else if (kaphaScore === pittaScore && kaphaScore > pittaScore) {
-      return "Kapha and pitta";
-    }else if (pittaScore === vataScore && pittaScore > kaphaScore) {
-      return "pitta and vata";
+      return "Kapha and Vata";
+    } else if (kaphaScore === pittaScore && kaphaScore > vataScore) {
+      return "Kapha and Pitta";
+    } else if (pittaScore === vataScore && pittaScore > kaphaScore) {
+      return "Pitta and Vata";
     } else if (kaphaScore === vataScore && kaphaScore < pittaScore) {
-      return "pitta";
+      return "Pitta";
     } else if (kaphaScore === pittaScore && kaphaScore < vataScore) {
-      return "vata";
+      return "Vata";
     } else if (pittaScore === vataScore && pittaScore < kaphaScore) {
-      return "kapha";
-    }else {
+      return "Kapha";
+    } else {
       return "Balanced";
     }
   };
 
-  const changeQuestion = () => {
-    if (selectedOption !== null) {
-      if (currentQuestion < QuizData.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedOption(0);
-      } else {
-        const dosha = getDosha();
-        setDoshaResult(dosha);
-        setShowResult(true);
-      }
-    } else {
-      alert("Please select an option before proceeding.");
-    }
+  const getDietPlan = (dosha) => {
+    // Define diet plans for each dosha
+    const dietPlans = {
+      Vata: "Diet plan for Vata dosha.",
+      Pitta: "Diet plan for Pitta dosha.",
+      Kapha: "Diet plan for Kapha dosha.",
+    };
+    return dietPlans[dosha];
   };
 
   const resetAll = () => {
     setShowResult(false);
     setCurrentQuestion(0);
-    handleOptionClick(0);
+    setSelectedOption(null);
     setVataScore(0);
     setPittaScore(0);
     setKaphaScore(0);
@@ -76,7 +87,10 @@ function Quiz() {
     <div>
       <div className="container">
         {showResult ? (
-          <QuizResult doshaResult={doshaResult} tryAgain={resetAll} />
+          <div className="bot-response">
+            <p className="chat bot"><img className='chatImg'src={celebration}/><b>Your Dosha: {doshaResult}</b></p>
+            <p className="chat bot"><img className='chatImg'src={Diet}/><b>Diet Plan:</b> {getDietPlan(doshaResult)}</p>
+          </div>
         ) : (
           <>
             <div className="question">
@@ -98,12 +112,6 @@ function Quiz() {
                 );
               })}
             </div>
-            <input
-              type="button"
-              value="Submit"
-              id="next-button"
-              onClick={changeQuestion}
-            />
           </>
         )}
       </div>

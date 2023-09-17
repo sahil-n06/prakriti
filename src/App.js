@@ -48,7 +48,7 @@ function App() {
     const botResponse = {
       id: generateUniqueKey(), // Generate a unique ID
       type: 'bot',
-      text: 'PRAKRITI is a concept in Ayurveda that defines your unique mind-body constitution. It is influenced by your dominant dosha—Vata, Pitta, or Kapha.',
+      text: 'PRAKRITI is a concept in Ayurveda that defines your unique mind-body constitution. It is influenced by your dominant dosha—Vata, Pitta, or Kapha.I provide the relevant information so,my name is also Prakriti',
     };
 
     setTimeout(() => {
@@ -67,7 +67,7 @@ function App() {
     const botResponse = {
       id: generateUniqueKey(), // Generate a unique ID
       type: 'bot',
-      text: 'You can use PRAKRITI to learn more about your doshas by taking a quiz. Simply click on "New Chat" to start the quiz, and I will guide you through it.',
+      text: 'You can use PRAKRITI to learn more about your doshas by taking a quiz. Simply click on "Know your Dosha" to start the quiz, and I will guide you through it.',
     };
 
     setTimeout(() => {
