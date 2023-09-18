@@ -3,6 +3,7 @@ import { QuizData } from "../Data/data";
 import gptLogo from '../assets/chatgptLogo.svg';
 import celebration from '../assets/celebration.jpeg'
 import Diet from '../assets/Diet.jpeg'
+import yoga from '../assets/yoga.jpeg'
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [vataScore, setVataScore] = useState(0);
@@ -72,7 +73,15 @@ function Quiz() {
     };
     return dietPlans[dosha];
   };
-
+  const getYogaPlan = (dosha) => {
+    // Define yoga plans for each dosha
+    const yogaPlans = {
+      Vata: "  Yoga prefrence to keep vata in check : Gentle Yoga,Warming Poses, Sun Salutations, Breathing Exercise, Meditation, Routine and Regularity ",
+      Pitta: " Yoga prefrence to keep Pitta in check : Hatha, Yin, Sitali Breath, Forward Bends, Avoid Overexertion ",
+      Kapha: "Yoga prefrence to keep Pitta in check :  Ashtanga, Heating Meditation, Maintain Consistency",
+    };
+    return yogaPlans[dosha];
+  };
   const resetAll = () => {
     setShowResult(false);
     setCurrentQuestion(0);
@@ -91,6 +100,8 @@ function Quiz() {
             <p className="chat bot"><img className='chatImg'src={celebration}/><b>Your Dosha: {doshaResult}</b></p>
             <p className="chat bot"><img className='chatImg'src={Diet}/><b><b>
               </b></b> {getDietPlan(doshaResult)}</p>
+            <p className="chat bot"><img className='chatImg'src={yoga}/><b><b>
+              </b></b> {getYogaPlan(doshaResult)}</p>
           </div>
         ) : (
           <>
