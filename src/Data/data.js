@@ -1,8 +1,8 @@
+
 export const QuizData = [
     {
         question: "What is your Body Frame",
         options:["Thin,Bony and small framed.Hardly gain weight","Medium built.Can gain or lose weight easily","Large built.Gain weight easily but difficult to lose"],
-        
 
     },
     {
@@ -63,6 +63,16 @@ export const QuizData = [
     {
         question: "What about your Emotional Nature",
         options:["I worry a lot.Often feel nervous and anxious","I often get irritable,angry and impatient.","Loving and caring"],
+        
+    },
+    {
+        question: "What are your food cravings?",
+        options:["Do you often crave sweets and carbs","prefer spicy and sour foods","lean towards heavy and oily foods"],
+        
+    },
+    {
+        question: "How is your digestion?",
+        options:["Do you experience gas and irregular bowel movements "," have strong digestion but may be prone to acidity","tend to have slow digestion and congestion"],
         
     },
 ]

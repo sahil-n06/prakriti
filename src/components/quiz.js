@@ -66,9 +66,9 @@ function Quiz() {
   const getDietPlan = (dosha) => {
     // Define diet plans for each dosha
     const dietPlans = {
-      Vata: "Diet plan for Vata dosha.",
-      Pitta: "Diet plan for Pitta dosha.",
-      Kapha: "Diet plan for Kapha dosha.",
+      Vata: "  Food prefrence to keep vata in check : Hot soups & stews, Ghee, Avocados, Nuts, Coconut, Buttermilk, Olives, Eggs, Cheese, Whole milk, Wheat, Warm spices such as turmeric, flaxseeds, cinnamon, ginger, etc.",
+      Pitta: "Food prefrence to keep Pitta in check : Bitter, astringent and sweet foods, Apple, Ripe Grapes, Milk, Ghee, Melon, Plum, Asparagus, Cabbage, Papaya, Cucumber, Cauliflower, Bell pepper, Legumes(lentils,spilt peas, soyabeans, black beans and wheat),Oats, Quinoa, Rice, Wheat, Almonds, Pumpkin seeds, Coconut, Sunflower seeds, ",
+      Kapha: "Food prefrence to keep Pitta in check : Asparagus, beets, broccoli, Brussels sprouts, cabbage, carrots, cauliflower, celery, eggplant, garlic, leafy green vegetables, lettuce, mushrooms, okra, onions, peas peppers, potatoes, radishes, spinach, and sprouts,Apples, apricots, berries, cherries, cranberries, papaya, pears, prunes, pomegranates, and grapefruit, apricots, figs, prunes, raisins, Barley, Buckwheat, Corn, Millet, Oats, Rye, and Basmati rice.",
     };
     return dietPlans[dosha];
   };
@@ -89,7 +89,8 @@ function Quiz() {
         {showResult ? (
           <div className="bot-response">
             <p className="chat bot"><img className='chatImg'src={celebration}/><b>Your Dosha: {doshaResult}</b></p>
-            <p className="chat bot"><img className='chatImg'src={Diet}/><b>Diet Plan:</b> {getDietPlan(doshaResult)}</p>
+            <p className="chat bot"><img className='chatImg'src={Diet}/><b><b>
+              </b></b> {getDietPlan(doshaResult)}</p>
           </div>
         ) : (
           <>
