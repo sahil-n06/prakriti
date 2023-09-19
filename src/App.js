@@ -32,7 +32,7 @@ function App() {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTo({
         top: chatContainerRef.current.scrollHeight,
-        behavior: 'smooth', // Add smooth scrolling animation
+        behavior: 'smooth',
       });
     }
   }, [chatMessages]);
@@ -75,6 +75,44 @@ function App() {
     }, 1000);
   };
 
+  const handleDosha = () => {
+    const userMessage = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'user',
+      text: 'What is Dosha classifictaion?',
+    };
+    setChatMessages(prevMessages => [...prevMessages, userMessage]);
+
+    const botResponse = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'bot',
+      text: 'checking what is dosha.',
+    };
+
+    setTimeout(() => {
+      setChatMessages(prevMessages => [...prevMessages, botResponse]);
+    }, 1000);
+  };
+
+  const handleAyurveda = () => {
+    const userMessage = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'user',
+      text: 'What is Ayurveda?',
+    };
+    setChatMessages(prevMessages => [...prevMessages, userMessage]);
+
+    const botResponse = {
+      id: generateUniqueKey(), // Generate a unique ID
+      type: 'bot',
+      text: 'checking what is ayurveda.',
+    };
+
+    setTimeout(() => {
+      setChatMessages(prevMessages => [...prevMessages, botResponse]);
+    }, 1000);
+  };
+
   const openQuiz = () => {
     setShowQuiz(true); // Set the state to true to display the quiz
   };
@@ -87,6 +125,8 @@ function App() {
           <button className='midBtn' onClick={() => { window.location.reload() }} ><img src={addBtn} alt='' className='addBtn' />New Chat</button>
           <div className='upperSideBottom'>
             <button className='query' onClick={handlePrakarti} value={'What is PRAKRITI'} ><img src={msgIcon} alt='' />What is PRAKRITI</button>
+            <button className='query' onClick={handleDosha} value={'What is Dosha classifictaion?'} ><img src={msgIcon} alt='' />What is Dosha classifictaion?</button>
+            <button className='query' onClick={handleAyurveda} value={'What is Ayurveda?'} ><img src={msgIcon} alt='' />What is Ayurveda?</button>
             <button className='query' onClick={handleQuery} value={'How to use PRAKRITI'} ><img src={msgIcon} alt='' />How to use PRAKRITI</button>
             <button className='query' onClick={openQuiz}><img src={msgIcon} alt='' />Know your Dosha</button>
           </div>
