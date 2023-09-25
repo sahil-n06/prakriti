@@ -82,15 +82,15 @@ function Quiz() {
     };
     return yogaPlans[dosha];
   };
-  const resetAll = () => {
-    setShowResult(false);
-    setCurrentQuestion(0);
-    setSelectedOption(null);
-    setVataScore(0);
-    setPittaScore(0);
-    setKaphaScore(0);
-    setDoshaResult(null);
-  };
+  // const resetAll = () => {
+  //   setShowResult(false);
+  //   setCurrentQuestion(0);
+  //   setSelectedOption(null);
+  //   setVataScore(0);
+  //   setPittaScore(0);
+  //   setKaphaScore(0);
+  //   setDoshaResult(null);
+  // };
 
   return (
     <div>
@@ -119,7 +119,8 @@ function Quiz() {
                     key={i}
                     onClick={() => handleOptionClick(i + 1)}
                   >
-                    {option}
+                     <img src={option.image} alt={`Option ${i + 1}`} /> 
+                    {option.text}
                   </button>
                 );
               })}
