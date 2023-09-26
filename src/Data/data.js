@@ -1,4 +1,6 @@
 import Yoga from '../assets/Diet.jpeg'
+import moderate_sweat from '../assets/moderate sweat.png'
+
 export const QuizData = [
     {
         question: "What is your Body Frame",
@@ -47,7 +49,7 @@ export const QuizData = [
             },
             {
                 text: "Sweat moderately but sweat a lot when working hard. Have strong body odor",
-                image: Yoga
+                image: moderate_sweat
             }
         ]
     },

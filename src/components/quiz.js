@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { QuizData } from "../Data/data";
-import gptLogo from '../assets/chatgptLogo.svg';
+import gptLogo from '../assets/chatgpt.jpg'
 import celebration from '../assets/celebration.jpeg'
 import Diet from '../assets/Diet.jpeg'
 import yoga from '../assets/yoga.jpeg'
@@ -119,7 +119,7 @@ function Quiz() {
                     key={i}
                     onClick={() => handleOptionClick(i + 1)}
                   >
-                     <img src={option.image} alt={`Option ${i + 1}`} /> 
+                     {/* <img src={option.image} alt={`Option ${i + 1}`} />  */}
                     {option.text}
                   </button>
                 );

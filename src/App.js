@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import gptLogo from './assets/chatgpt.svg';
+import gptLogo from './assets/chatgpt.jpg';
 import addBtn from './assets/add-30.png';
 import msgIcon from './assets/message.svg';
 import home from './assets/home.svg';
 import saved from './assets/bookmark.svg';
 import rocket from './assets/rocket.svg';
 import useric from './assets/user-ic.jpeg';
-import gptImgLogo from './assets/chatgptLogo.svg';
+import gptImgLogo from './assets/chatgptLogo.jpg';
 import Quiz from './components/quiz';
 import { QuizData } from './Data/data';
 
@@ -72,7 +72,7 @@ function App() {
 
     setTimeout(() => {
       setChatMessages(prevMessages => [...prevMessages, botResponse]);
-    }, 1000);
+    }, 2000);
   };
 
   const handleDosha = () => {

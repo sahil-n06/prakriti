@@ -7,7 +7,7 @@ html{
   font-size: 62.5%;/*1rem =10px 10/16  0.625*100*/
 }
 body{
-  background: rgb(3,0,31);
+  background: rgb(2, 0, 8);
   color: white;
   font-family: 'poppins',sans-serif;
 }
@@ -27,7 +27,10 @@ body{
 }
 
 .logo{
-  margin-right: 1rem;
+  border-radius: 50%;
+  margin-right: 2rem;
+  object-fit: cover;
+  height: 5.75rem;
 }
 
 .brand{
@@ -140,6 +143,12 @@ body{
 }
 
 .chatImg{
+  object-fit: cover;
+  width: 3.5rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+}
+.option_img{
   object-fit: cover;
   width: 3.5rem;
   margin-right: 2rem;
@@ -269,4 +278,3 @@ body{
   font-size: 23%;
  }
 }
-
